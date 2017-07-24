@@ -22,7 +22,18 @@ export class AuthService {
 		.map(res => res.json());
 	}
 
+// Store id token
+
 	storeUserData(token, user){
-		localStorage.setItem('id_token');
+		localStorage.setItem('id_token', token);
+		localStorage.setItem('user', JSON.stringify(user));
+		this.authToken = token;
+		this.user = user;
+	}
+
+	logout(){
+		this.authToken = null;
+		this.user = null;
+		localStorage.clear();
 	}
 }
